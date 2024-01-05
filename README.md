@@ -4,6 +4,9 @@
 
 このプロジェクトでは、React (JavaScript) と Flask (Python) を使用して、シンプルな開発環境を構築します。Nginxをリバースプロキシとして使用し、ユーザーが`http://localhost`にアクセスすると、Reactで構築されたフロントエンドから「大阪」というボタンが表示されます。このボタンをクリックすると、Flaskで構築されたバックエンドから「USJが有名です」というレスポンスが返され、フロントエンドで表示されます。
 
+[システム構成図](https://github.com/KeishiNishio/reverse_proxy_with_Docker/blob/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202024-01-06%202.46.59.png)
+
+
 ## 技術スタック
 
 - フロントエンド: React (JavaScript)
