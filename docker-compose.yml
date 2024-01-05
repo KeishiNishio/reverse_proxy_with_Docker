@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend/build:/usr/share/nginx/html
+    depends_on:
+      - web
+      - api
+    networks:
+      - default  # nginx-networkをdefaultに変更しました
 
   api:
     build:
@@ -22,18 +34,6 @@ services:
     networks:
       - default  # nginx-networkをdefaultに変更しました
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./frontend/build:/usr/share/nginx/html
-    depends_on:
-      - web
-      - api
-    networks:
-      - default  # nginx-networkをdefaultに変更しました
 
 networks:
   default:
