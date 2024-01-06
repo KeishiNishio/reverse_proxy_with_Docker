@@ -88,6 +88,15 @@ docker stop $(docker ps -aq) || true
 docker rm -f $(docker ps -aq) || true
 ```
 
+## 開発環境
+
+このプロジェクトは以下の環境で開発されています:
+
+- **オペレーティングシステム**: macOS
+- **Docker**:
+  - バージョン: 24.0.5
+- **Docker Compose**:
+  - バージョン: 2.23.3
 ## 参考文献
 
 [docker+react+python+fastapiで簡単な開発環境をリバースプロキシを使用して構築する](https://cloudsmith.co.jp/blog/virtualhost/docker/2022/12/2241971.html)
