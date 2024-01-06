@@ -4,7 +4,6 @@
 
 This project involves creating a simple development environment using React (JavaScript) and Flask (Python). By using Nginx as a reverse proxy, when users access `http://localhost`, they see a button labeled 'Osaka' on the front end built with React. Clicking this button triggers a response from the Flask-powered backend, saying "USJ is famous," which is then displayed on the front end.
 
-![System Architecture Image](https://github.com/KeishiNishio/reverse_proxy_with_Docker/blob/main/systemimage.png)
 
 ## Technology Stack
 
