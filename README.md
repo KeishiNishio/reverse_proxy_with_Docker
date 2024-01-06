@@ -1,41 +1,43 @@
-# Dockerによるリバースプロキシの実装
+# Implementation of Reverse Proxy with Docker
 
-# プロジェクト概要
+# Project Overview
 
-このプロジェクトでは、React (JavaScript) と Flask (Python) を使用して、シンプルな開発環境を構築します。Nginxをリバースプロキシとして使用し、ユーザーが`http://localhost`にアクセスすると、Reactで構築されたフロントエンドから「大阪」というボタンが表示され、このボタンをクリックすると、Flaskで構築されたバックエンドから「USJが有名です」というレスポンスが返され、フロントエンドで表示される
+This project involves creating a simple development environment using React (JavaScript) and Flask (Python). By using Nginx as a reverse proxy, when users access `http://localhost`, they see a button labeled 'Osaka' on the front end built with React. Clicking this button triggers a response from the Flask-powered backend, saying "USJ is famous," which is then displayed on the front end.
+
+![System Architecture Image](https://github.com/KeishiNishio/reverse_proxy_with_Docker/blob/main/systemimage.png)
+
+## Technology Stack
+
+- Frontend: React (JavaScript)
+- Backend: Flask (Python)
+- Reverse Proxy: Nginx
+- Container Orchestration: Docker Compose
+
+## Features
+
+- Integration of frontend and backend on localhost
+- Display of backend response upon button click
+- Configuration of reverse proxy using Nginx
+
+## Directory Structure
+
+- `backend/`: Directory containing the Flask application. Includes Dockerfile, [app.py](http://app.py/), and requirements.txt.
+- `frontend/`: Directory containing the React application. Includes the build folder, node_modules, public/index.html, src folder, Dockerfile, package-lock.json, and package.json.
+- `nginx/`: Directory containing Nginx configuration file default.conf.
+- `docker-compose.yml`: Configurations for launching services using Docker Compose.
 
 ![例の画像](https://github.com/KeishiNishio/reverse_proxy_with_Docker/blob/main/systemimage.png)
 
-## 技術スタック
 
-- フロントエンド: React (JavaScript)
-- バックエンド: Flask (Python)
-- リバースプロキシ: Nginx
-- コンテナオーケストレーション: Docker Compose
+## Setup Instructions
 
-## 機能
-
-- ローカルホスト上でのフロントエンドとバックエンドの連携
-- ボタンクリックによるバックエンドからのレスポンスの表示
-- Nginxを使用したリバースプロキシの設定
-
-## ディレクトリ構成
-
-- `backend/`: Flaskアプリケーションを含むディレクトリ。Dockerfile、[app.py](http://app.py/)、requirements.txtを含む。
-- `frontend/`: Reactアプリケーションを含むディレクトリ。buildフォルダ、node_modules、public/index.html、srcフォルダ、Dockerfile、package-lock.json、package.jsonを含む。
-- `nginx/`: Nginxの設定ファイルdefault.confを含むディレクトリ。
-- `docker-compose.yml`: Docker Composeを使ったサービスの起動設定。
-
-## セットアップ方法
-
-1. Dockerネットワークの作成:
+1. Create Docker network:
     
     ```bash
     docker network create nginx-network
-    
     ```
     
-2. フロントエンドの依存関係のインストール等
+2. Install dependencies for the frontend
     
     ```bash
     cd frontend
@@ -43,60 +45,59 @@
     export NODE_OPTIONS=--openssl-legacy-provider
     npm run build
     cd ..
-    
     ```
     
-3. Docker Composeを使用してサービスのビルドと起動:
+3. Build and launch services using Docker Compose:
     
     ```bash
     docker-compose build --no-cache
     docker-compose up -d
-    
     ```
     
 
-## 他の便利なコマンド
+## Other Useful Commands
 
-- Dockerキャッシュの削除、ネットワーク確認、コンテナ状況確認などのコマンド
-1. システム全体のDockerキャッシュを削除
+- Commands for Docker cache deletion, network inspection, container status check, etc.
+1. Delete all Docker cache system-wide
 
 ```bash
 docker system prune --all --force
 ```
 
-1. 設定したネットワークにコンテナが所属しているか確認
+2. Check if containers are connected to the configured network
 
 ```bash
 docker network inspect nginx-network
 ```
 
-1. コンテナの状況確認
+3. Check the status of containers
 
 ```bash
 docker ps -a
 ```
 
-1. 存在する全てのコンテナを停止
+4. Stop all existing containers
 
 ```bash
 docker stop $(docker ps -aq) || true
 ```
 
-1. 存在する全てのコンテナを削除
+5. Remove all existing containers
 
 ```bash
 docker rm -f $(docker ps -aq) || true
 ```
 
-## 開発環境
+## Development Environment
 
-このプロジェクトは以下の環境で開発されています:
+This project is developed in the following environment:
 
-- **オペレーティングシステム**: macOS
+- **Operating System**: macOS
 - **Docker**:
-  - バージョン: 24.0.5
+  - Version: 24.0.5
 - **Docker Compose**:
-  - バージョン: 2.23.3
-## 参考文献
+  - Version: 2.23.3
 
-[docker+react+python+fastapiで簡単な開発環境をリバースプロキシを使用して構築する](https://cloudsmith.co.jp/blog/virtualhost/docker/2022/12/2241971.html)
+## References
+
+[Building a Simple Development Environment Using Docker, React, Python, and FastAPI with Reverse Proxy](https://cloudsmith.co.jp/blog/virtualhost/docker/2022/12/2241971.html)
